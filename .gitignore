@@ -1,0 +1,4 @@
+test/
+*files_dump/
+*__pycache__/
+*/.env
