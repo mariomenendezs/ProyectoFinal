@@ -1,7 +1,11 @@
+-- Drop the view if it exists
+DROP VIEW IF EXISTS Summarize_yellow_taxi_trips;
+
+-- Create the view
 CREATE VIEW Summarize_yellow_taxi_trips AS
 SELECT 
     vendorid,
-    date_trunc('hour', tpep_pickup_date) AS pick_hour,
+    date_trunc('hour', tpep_pickup_datetime) AS pick_hour,
     AVG(passenger_count) AS avg_passenger_count,
     SUM(passenger_count) AS total_passenger_count,
     AVG(trip_distance) AS avg_trip_distance,
@@ -12,7 +16,8 @@ SELECT
 FROM 
     yellow.yellow_taxi_trips
 WHERE 
-    tpep_pickup_date >= '2023-01-01'
+    tpep_pickup_datetime >= '2023-01-01'
 GROUP BY 
     vendorid,
-    pick_hour;
+    DATE(tpep_pickup_datetime),
+    date_trunc('hour', tpep_pickup_datetime);
