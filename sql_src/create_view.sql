@@ -12,6 +12,8 @@ SELECT
     SUM(trip_distance) AS total_trip_distance,
     AVG(fare_amount) AS avg_fare_amount,
     SUM(fare_amount) AS total_fare_amount,
+    AVG(total_amount) AS avg_total_amount,
+    SUM(total_amount) AS sum_total_amount,
     COUNT(*) AS total_trips
 FROM 
     yellow.yellow_taxi_trips
